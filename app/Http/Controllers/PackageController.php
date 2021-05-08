@@ -68,8 +68,7 @@ class PackageController extends Controller
 		);
 		$data['basecost'] = $basecost[$request['city']][$request['servlev']];
 
-		$date = DateTime::createFromFormat('d/m/Y', $request['col_date']);
-		$date = $date->format('l');
+		$date =date("l", strtotime($request['col_date']));
 		$data['additionalweekend'] = 0;
 		if($date == 'Saturday' || $date == 'Sunday'){
 			$data['additionalweekend'] = 10;

@@ -40,8 +40,8 @@
 					<div class="form-group">
 
 						<label>Collection Date</label>
-						<div class='input-group date' id="col_date">
-							<input type='text' class="form-control" name="col_date" value="05-05-2021" required/>
+						<div class='input-group date' id="">
+							<input type='text' class="form-control" name="col_date" value="2021-05-08" required/>
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
@@ -54,7 +54,7 @@
 					<div class="form-group">
 
 						<label>Collection Time</label>
-						<div class='input-group date' id="col_time">
+						<div class='input-group date' id="">
 							<input type='text' class="form-control" name="col_time" value="14:00 PM" required/>
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-time"></span>
@@ -197,7 +197,7 @@
 
 	<script>
 		$('#col_date').datetimepicker({
-			format: 'DD/MM/YYYY'
+			format: 'y-m-d'
 		});
 		$('#col_time').datetimepicker({  
 			format: 'HH:mm a'
