@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
+use DateTime;
 
 class PackageController extends Controller
 {
@@ -67,8 +68,8 @@ class PackageController extends Controller
 		);
 		$data['basecost'] = $basecost[$request['city']][$request['servlev']];
 
-		$date = date_create_from_format("d/m/Y",$request['col_date']);
-		$date = date_format($date,"l");
+		$date = DateTime::createFromFormat('d/m/Y', $request['col_date']);
+		$date = $date->format('l');
 		$data['additionalweekend'] = 0;
 		if($date == 'Saturday' || $date == 'Sunday'){
 			$data['additionalweekend'] = 10;

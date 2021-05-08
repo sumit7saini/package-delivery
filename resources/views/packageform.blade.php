@@ -41,7 +41,7 @@
 
 						<label>Collection Date</label>
 						<div class='input-group date' id="col_date">
-							<input type='text' class="form-control" name="col_date" required/>
+							<input type='text' class="form-control" name="col_date" value="05-05-2021" required/>
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
@@ -55,7 +55,7 @@
 
 						<label>Collection Time</label>
 						<div class='input-group date' id="col_time">
-							<input type='text' class="form-control" name="col_time" required/>
+							<input type='text' class="form-control" name="col_time" value="14:00 PM" required/>
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-time"></span>
 							</span>
