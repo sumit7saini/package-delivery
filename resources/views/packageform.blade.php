@@ -2,12 +2,25 @@
 <html>
 <head>
 	<title>Laravel Bootstrap Datepicker</title>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script> 
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/2.0.4/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-8QsaDu4j7YbIRj05ebZoXvlB8RwQk5A&libraries=places&callback=initAutocomplete" async></script>
+
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>  
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+	<script>  
+		$(function() {  
+			$('#datetimepicker1').datetimepicker({
+				format: 'DD-MM-YYYY'
+			});
+			$('#datetimepicker2').datetimepicker({
+				format: 'HH:mm a'
+			});  
+		});  
+	</script>
+	<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">    
 </head>
 
 <body>
@@ -17,7 +30,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="form-group">
-						<label>Choose Blue Collar City *</label>
+						<label>Choose Blue Collar City</label>
 						<select name="city" id="city" class="form-control" required>
 							<option value="" selected="selected">Select</option>
 							<option value="Reno">Reno</option>
@@ -40,8 +53,8 @@
 					<div class="form-group">
 
 						<label>Collection Date</label>
-						<div class='input-group date' id="">
-							<input type='text' class="form-control" name="col_date" value="2021-05-08" required/>
+						<div class='input-group date' id="datetimepicker1">
+							<input type='text' class="form-control" name="col_date" value="05-05-2021" required/>
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
@@ -54,7 +67,7 @@
 					<div class="form-group">
 
 						<label>Collection Time</label>
-						<div class='input-group date' id="">
+						<div class='input-group date' id="datetimepicker2">
 							<input type='text' class="form-control" name="col_time" value="14:00 PM" required/>
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-time"></span>
@@ -67,15 +80,15 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="form-group">
-						<label>Pickup Address *</label>
+						<label>Pickup Address</label>
 
-						<input id="fromplace" class="form-control" name="fromplace" type="text" placeholder="" value="" required>
+						<input id="autocompletefrom" class="form-control" name="fromplace" type="text" placeholder="" value="" required>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label>Delivery Address</label>
-						<input id="toplace" class="form-control" name="toplace" type="text" placeholder="" value="" required>
+						<input id="autocompleteto" class="form-control Autocomplete" name="toplace" type="text" placeholder="" value="" required>
 					</div>
 				</div>
 			</div>
@@ -83,7 +96,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="form-group">
-						<label>Weight of Packages *</label>
+						<label>Weight of Packages</label>
 
 						<input id="packweight" class="form-control" name="packweight" type="number" placeholder="LBS" max="100" required>
 					</div>
@@ -99,7 +112,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="form-group">
-						<label>Package Content *</label>
+						<label>Package Content</label>
 
 						<textarea name="packcont" id="packcont" class="form-control" required></textarea>
 					</div>
@@ -146,7 +159,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="form-group">
-						<label>Name *</label>
+						<label>Name</label>
 
 						<input id="custname" class="form-control" name="custname" type="text" placeholder="" required>
 
@@ -164,7 +177,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="form-group">
-						<label>Phone *</label>
+						<label>Phone</label>
 
 						<input id="custphone" class="form-control" name="custphone" type="text" placeholder="" required>
 
@@ -190,18 +203,27 @@
 	</div>	
 
 	<style type="text/css">
-		div.date{
-			position: relative
+		input{
+			height: auto !important;
 		}
 	</style>
 
 	<script>
 		$('#col_date').datetimepicker({
-			format: 'y-m-d'
+			format: 'DD/MM/YYYY'
 		});
 		$('#col_time').datetimepicker({  
 			format: 'HH:mm a'
 		});  
+		$(document).ready(function () {
+			google.maps.event.addDomListener(window, 'load', initialize);
+		});
+		function initAutocomplete() {
+			autocompletefrom = new google.maps.places.Autocomplete(
+				document.getElementById('autocompletefrom'));
+			autocompleteto = new google.maps.places.Autocomplete(
+				document.getElementById('autocompleteto'));
+		}
 	</script> 
 
 </body>

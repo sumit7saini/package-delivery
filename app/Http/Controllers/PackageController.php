@@ -104,18 +104,15 @@ class PackageController extends Controller
 
 		$from = $request['fromplace'];
 		$to = $request['toplace'];
+
 		$from = preg_replace('/\s+/', '+', $from);
 		$to = preg_replace('/\s+/', '+', $to);
-		$apikey = "AnjYOaE9Brg5VAJ1ddY8ZRW85FayBJwy1kD-N0I_-o42XWlWYXJgF6Lo2ERylLbq";
-		$from = file_get_contents('http://dev.virtualearth.net/REST/v1/Locations?query='.$from.'&maxRes=1&key='.$apikey);
-		$from = json_decode($from);
-		$from = $from->resourceSets[0]->resources[0]->geocodePoints[0]->coordinates;
-		$to = file_get_contents('http://dev.virtualearth.net/REST/v1/Locations?query='.$to.'&maxRes=1&key='.$apikey);
-		$to = json_decode($to);
-		$to = $to->resourceSets[0]->resources[0]->geocodePoints[0]->coordinates;
-		$distance = file_get_contents('https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins='.implode(",",$from).'&destinations='.implode(",",$to).'&travelMode=driving&distanceUnit=mi&key='.$apikey);
+
+		$apikey = "AIzaSyC-8QsaDu4j7YbIRj05ebZoXvlB8RwQk5A";
+		$distance = file_get_contents('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$from.'&destinations='.$to.'&sensor=false&mode=driving&key='.$apikey);
 		$distance = json_decode($distance);
-		$distance = $distance->resourceSets[0]->resources[0]->results[0]->travelDistance;
+		$distance = $distance->rows[0]->elements[0]->distance->value;
+		$distance = (int)($distance*0.000621371192);
 		$data['distance'] = $distance;
 
 		$data['deliverycost'] = 0;
