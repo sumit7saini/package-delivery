@@ -135,7 +135,9 @@ class PackageController extends Controller
 			$data['deliverycost'] = $distance * $deliveryrate;
 		}
 
-		$data['subtotal'] = $data['insurancecost'] + $data['packageextracost'] + $data['weightcost'] + $data['additionalbusinesshours'] + $data['additionalweekend'] + $data['basecost'] + $data['deliverycost'];
+		$data['total'] =$data['packageextracost'] + $data['weightcost'] + $data['additionalbusinesshours'] + $data['additionalweekend'] + $data['basecost'] + $data['deliverycost'];
+
+		$data['subtotal'] = $data['total'] + $data['insurancecost'];
 
 		$data['mileagecredit'] = 0;
 		if($distance > 8) {
@@ -147,7 +149,7 @@ class PackageController extends Controller
 			$data['mileagecredit'] = 8*$service_level_cost[$request['servlev']];
 		}
 
-		$data['total'] = $data['subtotal'] - $data['mileagecredit'];
+		$data['grandtotal'] = $data['subtotal'] - $data['mileagecredit'];
 		return view('quote', ['data' => $data, 'request' => $request]);
 	}
 }

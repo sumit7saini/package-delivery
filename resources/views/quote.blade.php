@@ -262,7 +262,7 @@
 						<div class="row">
 							<div class="col-lg-6">
 								
-								<b>Shipper to pickup point distance</b>
+								<b>Distance Office to Shipper</b>
 
 								
 							</div>
@@ -277,7 +277,7 @@
 						<div class="row">
 							<div class="col-lg-6">
 								
-								<b>Pickup point to delivery point distance</b>
+								<b>+ Distance Shipper to Consignee</b>
 
 								
 							</div>
@@ -292,7 +292,7 @@
 						<div class="row">
 							<div class="col-lg-6">
 								
-								<b>Total distance</b>
+								<b>= Total Distance</b>
 
 								
 							</div>
@@ -320,6 +320,21 @@
 						</div>
 
 						<hr>
+
+						<div class="row">
+							<div class="col-lg-6">
+								
+								<b>Total</b>
+
+								
+							</div>
+							<div class="col-lg-6">
+								
+
+								$<?= $data['total'] ?>
+								
+							</div>
+						</div>
 
 						<div class="row">
 							<div class="col-lg-6">
@@ -378,7 +393,7 @@
 							<div class="col-lg-6">
 								
 
-								$<?= $data['total'] ?>
+								$<?= $data['grandtotal'] ?>
 								
 							</div>
 						</div>
