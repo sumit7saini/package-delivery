@@ -75,9 +75,16 @@ class PackageController extends Controller
 		}
 		//Check for holidays
 		//...code 
+		$holidays = array('25-12', '04-07', '31-10', '24-12', '01-01', '31-12', '31-05', '06-09');
+		$date =date("d-m", strtotime($request['col_date']));
+		$data['additionalholidays'] = 0;
+		if(in_array($date, $holidays)){
+			$data['additionalholidays'] = 20;
+		}
+
 
 		$data['additionalbusinesshours'] = 0;
-		if(strtotime('08:00 am') < strtotime($request['col_time']) || strtotime('05:00 pm') > strtotime($request['col_time'])){
+		if(strcmp('08:00 AM', $request['col_time']) > 0 || strcmp('17:00 PM', $request['col_time']) < 0){
 			$data['additionalbusinesshours'] = 20;
 		}
 
@@ -109,11 +116,19 @@ class PackageController extends Controller
 		$to = preg_replace('/\s+/', '+', $to);
 
 		$apikey = "AIzaSyC-8QsaDu4j7YbIRj05ebZoXvlB8RwQk5A";
-		$distance = file_get_contents('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$from.'&destinations='.$to.'&sensor=false&mode=driving&key='.$apikey);
-		$distance = json_decode($distance);
-		$distance = $distance->rows[0]->elements[0]->distance->value;
+		$distance1 = file_get_contents('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$request['city'].'&destinations='.$from.'&sensor=false&mode=driving&key='.$apikey);
+		$distance1 = json_decode($distance1);
+		$distance1 = $distance1->rows[0]->elements[0]->distance->value;
+	
+		$distance2 = file_get_contents('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$from.'&destinations='.$to.'&sensor=false&mode=driving&key='.$apikey);
+		$distance2 = json_decode($distance2);
+		$distance2 = $distance2->rows[0]->elements[0]->distance->value;
+
+		$distance = $distance1 + $distance2;
 		$distance = (int)($distance*0.000621371192);
 		$data['distance'] = $distance;
+		$data['distance1'] = (int)($distance1*0.000621371192);
+		$data['distance2'] = (int)($distance2*0.000621371192);
 
 		$data['deliverycost'] = 0;
 		if($distance > 8){

@@ -207,7 +207,7 @@
 							<div class="col-lg-6">
 								
 
-								$<?php echo ($data['additionalweekend']+$data['additionalbusinesshours']) ?>
+								$<?php echo ($data['additionalbusinesshours']) ?>
 								
 							</div>
 						</div>
@@ -222,7 +222,7 @@
 							<div class="col-lg-6">
 								
 
-								$0
+								$<?php echo ($data['additionalweekend']+$data['additionalholidays']) ?>
 								
 							</div>
 						</div>
@@ -262,7 +262,37 @@
 						<div class="row">
 							<div class="col-lg-6">
 								
-								<b>Distance</b>
+								<b>Shipper to pickup point distance</b>
+
+								
+							</div>
+							<div class="col-lg-6">
+								
+
+								<?= $data['distance1'] ?> Miles
+								
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-6">
+								
+								<b>Pickup point to delivery point distance</b>
+
+								
+							</div>
+							<div class="col-lg-6">
+								
+
+								<?= $data['distance2'] ?> Miles
+								
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-6">
+								
+								<b>Total distance</b>
 
 								
 							</div>
